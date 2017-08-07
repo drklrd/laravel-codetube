@@ -2,3 +2,8 @@ php artisan make:auth
 php artisan migrate
 
 php artisan make:model Models\\Channel -m
+php artisan migrate
+
+php artisan queue:table
+php artisan queue:failed-table
+php artisan migrate
