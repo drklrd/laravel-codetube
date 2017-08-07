@@ -1,0 +1,4 @@
+php artisan make:auth
+php artisan migrate
+
+php artisan make:model Models\\Channel -m
