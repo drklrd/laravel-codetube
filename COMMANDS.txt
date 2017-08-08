@@ -15,3 +15,12 @@ php artisan make:controller ChannelSettingsController
 php artisan make:request ChannelUpdateRequest (Create requests folder)
 
 php artisan make:policy ChannelPolicy
+
+composer require aws/aws-sdk-php
+composer require league/flysystem-aws-s3-v3 ~1.0
+
+
+php artisan make:job UploadImage ( to dispatch job i.e to upload image to S3)
+
+php artisan queue:work (to run job in the background)
+php artisan queue:flush

@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
 
-                    <form class="" action="/channel/{{ $channel->slug }}/edit" method="post">
+                    <form class="" action="/channel/{{ $channel->slug }}/edit" method="post" enctype="multipart/form-data">
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }} ">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name" name="name" value=" {{ old('name') ? old('name') : $channel->name }}  ">
@@ -33,6 +33,12 @@
                                     {{ $errors->first('slug') }}
                                 </div>
                             @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image">Channel image</label>
+                            <input type="file" name="image" id="image">
+
                         </div>
 
                         <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }} ">
