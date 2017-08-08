@@ -24,3 +24,6 @@ php artisan make:job UploadImage ( to dispatch job i.e to upload image to S3)
 
 php artisan queue:work (to run job in the background)
 php artisan queue:flush
+
+
+composer require intervention/image ( to get image resizer lib)

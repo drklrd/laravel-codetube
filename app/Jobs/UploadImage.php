@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Models\Channel;
 use Storage;
 use File;
+use Image;
 
 class UploadImage implements ShouldQueue
 {
@@ -42,6 +43,10 @@ class UploadImage implements ShouldQueue
 
         $fileName = $this->fileId . '.png';
 
+        Image::make($path)->encode('png')->fit(40,40,function($c){
+            $c->upsize(); // upsize if less than 40 pixels
+
+        })->save();
         // code to upload to S3
 
         // if(Storage::disk('s3images')->put('profile/' . $fileName, fopen($path,'r+'))){
