@@ -11,3 +11,7 @@ php artisan migrate
 php artisan make:provider ComposerServiceProvider
 
 php artisan make:controller ChannelSettingsController
+
+php artisan make:request ChannelUpdateRequest (Create requests folder)
+
+php artisan make:policy ChannelPolicy

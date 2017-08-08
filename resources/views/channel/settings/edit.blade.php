@@ -24,7 +24,7 @@
                             <label for="slug">Unique URL</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    {{ config('app.url') }}/channel/
+                                    {{ config('app.url') }}channel/
                                 </div>
                                 <input type="text" class="form-control" id="slug" name="slug" value=" {{ old('slug') ? old('slug') : $channel->slug }}  ">
                             </div>
@@ -37,7 +37,7 @@
 
                         <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }} ">
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" rows="8" cols="80" class="form-control" value=" {{ old('description') ? old('description') : $channel->description }}  "></textarea>
+                            <textarea name="description" id="description"  class="form-control"> {{ old('description') ? old('description') : $channel->description   }} </textarea>
                             @if ($errors->has('description'))
                                 <div class="help-block">
                                     {{ $errors->first('description') }}
