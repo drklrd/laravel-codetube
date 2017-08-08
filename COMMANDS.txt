@@ -7,3 +7,5 @@ php artisan migrate
 php artisan queue:table
 php artisan queue:failed-table
 php artisan migrate
+
+php artisan make:provider ComposerServiceProvider
