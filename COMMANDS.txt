@@ -26,4 +26,11 @@ php artisan queue:work (to run job in the background)
 php artisan queue:flush
 
 
+Resizing the channel image ...
+
 composer require intervention/image ( to get image resizer lib)
+
+Setting up elixir...
+
+npm install
+gulp
