@@ -34,3 +34,5 @@ Setting up elixir...
 
 npm install
 gulp
+
+php artisan make:controller VideoUploadController
