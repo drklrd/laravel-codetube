@@ -50,3 +50,6 @@ Saving video details ...
 
 php artisan make:request VideoUpdateRequest
 php artisan make:policy VideoPolicy
+
+Uploading video to S3
+php artisan make:job UploadVideo

@@ -135,8 +135,12 @@
             }
         },
 
-        mounted() {
-            console.log('Component mounted.')
+        ready(){
+            window.onbeforeunload = ()=>{
+                if(this.uploading && !this.uploadingComplete && !this.failed){
+                    return 'Are you sure you want to nagivate away ?';
+                }
+            }
         }
     }
 </script>
