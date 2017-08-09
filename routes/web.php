@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']],function(){
 
     Route::get('/upload','VideoUploadController@index');
+    Route::post('/upload','VideoUploadController@store');
+
 
     Route::post('/videos','VideoController@store');
 

@@ -7,7 +7,28 @@
 
                     <div class="panel-body">
                         <input type="file" name="video" id="video" @change="fileInputChange" v-if="!uploading" >
+
+                        <div class="alert alert-danger" v-if="failed">
+                            Something went wrong.
+                        </div>
+
                         <div id="video-form" v-if="uploading && !failed">
+
+                            <div class="alert alert-info" v-if="!uploadingComplete">
+                                Your video will be available at <a :href="$root.url+'/videos/'+uid">{{ $root.url }}/videos/{{uid}}</a>
+                            </div>
+
+                            <div class="alert alert-info" v-if="uploadingComplete">
+                                Upload complete. Video is now processing.
+                                <a href="/videos">Go to your videos</a>
+                            </div>
+
+                            <div class="progress" v-if="!uploadingComplete">
+                                <div class="progress-bar" v-bind:style=" { width : fileProgress + '%' } ">
+
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" name="title" class="form-control" id="title" v-model="title">
@@ -48,7 +69,8 @@
                 title : 'Untitled',
                 description : null,
                 visibility : 'private',
-                saveStatus : null
+                saveStatus : null,
+                fileProgress : 0
 
             }
         },
@@ -59,7 +81,23 @@
                 this.file = document.getElementById('video').files[0];
                 this.store()
                     .then(()=>{
+                         var form = new FormData();
+                         form.append('video',this.file);
+                         form.append('uid',this.uid);
 
+                         this.$http.post('/upload',form,{
+                             progress : (e) => {
+                                 if(e.lengthComputable){
+                                     this.updateProgress(e);
+                                 }
+                             }
+                         }).then(()=>{
+                             this.uploadingComplete = true;
+                         },()=>{
+                             this.failed = true;
+                         });
+                    },()=>{
+                        this.failed = true;
                     })
             },
             store(){
@@ -90,6 +128,10 @@
                 },()=>{
                     this.saveStatus = 'Failed to save';
                 });
+            },
+            updateProgress(e){
+                e.percent = (e.loaded / e.total) * 100;
+                this.fileProgress = e.percent;
             }
         },
 
