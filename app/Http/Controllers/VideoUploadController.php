@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Jobs\UploadVideo;
 
 class VideoUploadController extends Controller
 {
@@ -17,6 +18,14 @@ class VideoUploadController extends Controller
         $video = $channel->videos()->where('uid',$request->uid)->firstOrFail();
 
         $request->file('video')->move(storage_path() . '/uploads', $video->video_filename);
-        
+
+        // upload to S3
+
+        $this->dispatch(new UploadVideo(
+            $video->video_filename
+        ));
+
+        return response()->json(null,200);
+
     }
 }
