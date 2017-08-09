@@ -45,3 +45,8 @@ php artisan make:model Models\\Video
 Intial video creation ...
 
 php artisan make:controller VideoController
+
+Saving video details ...
+
+php artisan make:request VideoUpdateRequest
+php artisan make:policy VideoPolicy
