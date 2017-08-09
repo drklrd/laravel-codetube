@@ -22,17 +22,37 @@
 
         data(){
             return {
+                uid : null,
                 uploading : false,
                 uploadingComplete : false,
-                failed : false
+                failed : false,
+                title : 'Untitled',
+                description : null,
+                visibility : 'private'
 
             }
         },
         methods : {
             fileInputChange(){
-                console.log('file change.')
-
                 this.uploading = true;
+                this.failed = false;
+                this.file = document.getElementById('video').files[0];
+                this.store()
+                    .then(()=>{
+
+                    })
+            },
+            store(){
+                Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+                return this.$parent.$http.post('/videos',{
+                    title : this.title,
+                    description : this.description,
+                    visibility : this.visibility,
+                    extension : this.file.name.split('.').pop()
+
+                }).then((response)=>{
+                    this.uid = response.json().data.uid;
+                });
             }
         },
 

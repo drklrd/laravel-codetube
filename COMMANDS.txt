@@ -40,3 +40,8 @@ php artisan make:controller VideoUploadController
 php artisan make:migration create_videos_table --create=videos
 php artisan migrate
 php artisan make:model Models\\Video
+
+
+Intial video creation ...
+
+php artisan make:controller VideoController
