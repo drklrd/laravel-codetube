@@ -40,6 +40,9 @@ class VideoController extends Controller
             'description' => $request->description,
             'visibility' => $request->visibility,
             'video_filename' => "{$uid}.{$request->extension}",
+            'processed' => true, // ONLY FOR NOW WHEN TELESTREAM IS NOT USED,
+            'video_id' => uniqid(true) // ONLY FOR NOW WHEN TELESTREAM IS NOT USED
+
         ]);
 
         return response()->json([
