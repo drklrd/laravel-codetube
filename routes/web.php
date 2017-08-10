@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth']],function(){
 
 
     Route::post('/videos','VideoController@store');
+    Route::get('/videos','VideoController@index');
+
 
     Route::put('/videos/{video}','VideoController@update');
 

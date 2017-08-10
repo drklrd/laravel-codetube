@@ -32,4 +32,36 @@ class Video extends Model
     {
         return 'uid';
     }
+
+
+    // get latest video first
+    public function scopeLatestFirst($query)
+    {
+        return $query->orderBy('created_at','desc');
+    }
+
+    public function isProcessed()
+    {
+        return $this->processed;
+    }
+
+    public function processedPercentage()
+    {
+        return $this->processed_percentage;
+    }
+
+    public function getThumbnail()
+    {
+
+        return config('app.url') . 'storage/default.jpg';
+
+        // for S3 config do as below :
+
+        // if(!$this->isProcessed){
+        //     return config('codetube.buckets.videos') . '/default.png';
+        // }
+        //
+        // return config('codetube.buckets.videos') . '/' .$this->video_id .'_1.png';
+
+    }
 }
