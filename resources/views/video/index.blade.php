@@ -21,13 +21,19 @@
                                         <a href="/videos/{{$video->uid}}"> {{ $video->title }} </a>
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                @if(!$video->isProcessed())
-                                                    Processing ( {{ $video->processedPercentage() ? $video->processedPercentage(). '%' : 'Starting up' }} )
-                                                @else
-                                                    <span>
-                                                        {{ $video->created_at->toDateTimeString() }}
-                                                    </span>
-                                                @endif
+                                                <p class="muted">
+                                                    @if(!$video->isProcessed())
+                                                        Processing ( {{ $video->processedPercentage() ? $video->processedPercentage(). '%' : 'Starting up' }} )
+                                                    @else
+                                                        <span>
+                                                            {{ $video->created_at->toDateTimeString() }}
+                                                        </span>
+                                                    @endif
+                                                </p>
+
+                                                <form class="" action="" method="post">
+                                                    <a href="/videos/{{$video->uid}}/edit" class="btn btn-default">Edit</a>
+                                                </form>
                                             </div>
                                             <div class="col-sm-6">
                                                 <p>

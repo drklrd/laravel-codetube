@@ -64,4 +64,15 @@ class Video extends Model
         // return config('codetube.buckets.videos') . '/' .$this->video_id .'_1.png';
 
     }
+
+
+    public function votesAllowed()
+    {
+        return (bool) $this->allow_votes;
+    }
+
+    public function commentsAllowed()
+    {
+        return (bool) $this->allow_comments;
+    }
 }

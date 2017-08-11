@@ -17,6 +17,16 @@ class VideoController extends Controller
         ]);
     }
 
+    public function edit(Video $video)
+    {
+        $this->authorize('edit',$video); // as registered in provider and defined in VideoPolicy
+
+        return view('video.edit',[
+            'video' => $video
+        ]);
+    }
+
+
     public function update(VideoUpdateRequest $request, Video $video)
     {
         $this->authorize('update',$video); // as registered in provider and defined in VideoPolicy
