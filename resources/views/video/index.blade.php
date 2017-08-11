@@ -39,6 +39,9 @@
                                 </div>
                             </div>
                         @endforeach
+
+                        {{ $videos->links() }}
+
                     @else
                         <p>You have no videos</p>
                     @endif
