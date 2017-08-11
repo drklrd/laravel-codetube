@@ -99,4 +99,12 @@ class Video extends Model
         return true;
     }
 
+
+    public function getStreamUrl()
+    {
+        return config('app.url') . 'storage/default.mp4';
+
+    }
+
+
 }
