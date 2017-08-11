@@ -9,6 +9,13 @@ use App\Http\Requests\VideoUpdateRequest;
 class VideoController extends Controller
 {
 
+    public function show(Video $video)
+    {
+        return view('video.show',[
+            'video' => $video
+        ]);
+    }
+
     public function index(Request $request)
     {
         $videos = $request->user()->videos()->latestFirst()->paginate(10); // we can use latestFirst here as we build scopeLatestFirst in Video model

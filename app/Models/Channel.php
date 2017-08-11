@@ -29,4 +29,10 @@ class Channel extends Model
         return $this->hasMany(Video::class);
     }
 
+    public function getImage()
+    {
+        return config('app.url') . 'storage/default.jpg';
+
+    }
+
 }
