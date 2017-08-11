@@ -4,7 +4,32 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            Video Player
+
+            @if($video->isPrivate() && Auth::check() && $video->ownedByUser(Auth::user()) )
+                <div class="alert alert-info">
+                    Your video is private and only you can see it.
+                </div>
+            @endif
+
+
+            @if ($video->isProcessed() && $video->canBeAccessedByUser(Auth::user()))
+                Show video Player
+            @endif
+
+            @if(!$video->isProcessed())
+                <div class="video-placeholder">
+                    <div class="video-placeholder_header">
+                        This video is processing. Come back later.
+                    </div>
+                </div>
+            @elseif(!$video->canBeAccessedByUser(Auth::user()))
+                <div class="video-placeholder">
+                    <div class="video-placeholder_header">
+                        This video is private.
+                    </div>
+                </div>
+            @endif
+
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h4> {{$video->title}} </h4>
