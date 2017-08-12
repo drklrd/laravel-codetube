@@ -24,4 +24,18 @@ class VideoPolicy
     {
         return $user->id === $video->channel->user_id;
     }
+
+    public function vote(User $user, Video $video)
+    {
+        // if(!$video->canBeAccessed($user)){
+        //     return false;
+        // }
+        //
+        // if(!$video->votesAllowed()){
+        //     return false;
+        // }
+
+        return true;
+    }
+
 }

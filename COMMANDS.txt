@@ -72,3 +72,8 @@ Vote model and migrations
 php artisan make:model Vote -m
 php artisna migrate
 php artisan make:controller VideoVoteController
+
+
+Voting up and down ...
+
+php artisan make:request CreateVoteRequest
