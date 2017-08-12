@@ -83,3 +83,10 @@ Comment model and migration
 
 php artisan make:model Models\\Comment -m
 php artisan migrate
+
+Get Fractal
+
+composer require spatie/laravel-fractal
+
+Comments endpoint...
+php  artisan make:controller VideoCommentController
