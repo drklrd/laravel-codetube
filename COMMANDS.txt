@@ -77,3 +77,9 @@ php artisan make:controller VideoVoteController
 Voting up and down ...
 
 php artisan make:request CreateVoteRequest
+
+
+Comment model and migration
+
+php artisan make:model Models\\Comment -m
+php artisan migrate

@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Traits\Orderable; // New trait Orderable has been created taking a function from here !!!
+
 
 class Video extends Model
 {
-    use SoftDeletes; // since this is a Trait, we need to use it.
+    use SoftDeletes ,Orderable; // since this is a Trait, we need to use it. // And then we use Orderable trait  HERE !!!
 
     protected $fillable = [
     	'title',
@@ -34,11 +36,7 @@ class Video extends Model
     }
 
 
-    // get latest video first
-    public function scopeLatestFirst($query)
-    {
-        return $query->orderBy('created_at','desc');
-    }
+
 
     public function isProcessed()
     {
