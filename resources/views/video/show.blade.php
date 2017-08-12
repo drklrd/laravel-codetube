@@ -69,7 +69,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     @if ($video->commentsAllowed())
-                        Comments
+                        <video-comments video-uid="{{ $video->uid }}" ></video-comments>
                     @else
                         <p>
                             Comments are disabled for this video

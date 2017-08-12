@@ -20,7 +20,7 @@ var vueResource = require('vue-resource');
 Vue.component('video-upload', require('./components/VideoUpload.vue'));
 Vue.component('video-player', require('./components/VideoPlayer.vue'));
 Vue.component('video-voting', require('./components/VideoVoting.vue'));
-
+Vue.component('video-comments',require('./components/VideoComments.vue'));
 
 
 Vue.use(vueResource);

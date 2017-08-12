@@ -7,11 +7,13 @@ use League\Fractal\TransformerAbstract;
 
 class CommentTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = [
+        'channel','replies'
+    ];
+    
     public function transform(Comment $comment)
     {
-        protected $availableIncludes = [
-            'channel','replies'
-        ];
+
         return [
             'id' => $comment->id,
             'user_id' => $comment->user_id,
