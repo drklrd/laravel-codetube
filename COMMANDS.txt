@@ -64,3 +64,10 @@ php artisan make:model VideoView -m
 php artisan migrate
 
 php artisan make:controller VideoViewController
+
+Skipping the search-setup and search
+
+Vote model and migrations
+
+php artisan make:model Vote -m
+php artisna migrate
