@@ -122,6 +122,21 @@ class Video extends Model
         return $this->morphMany(Vote::class,'voteable');
     }
 
+    public function upVotes()
+    {
+        return $this->votes->where('type','up');
+    }
+
+    public function downVotes()
+    {
+        return $this->votes->where('type','down');
+    }
+
+    public function voteFromUser(User $user)
+    {
+        return $this->votes()->where('user_id',$user->id);
+    }
+
 
 
 }
