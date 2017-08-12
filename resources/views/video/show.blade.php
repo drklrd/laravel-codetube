@@ -37,6 +37,10 @@
                     <h4> {{$video->title}} </h4>
                     <div class="pull-right">
                         Video views
+                        <div class="video__views">
+                            {{ $video->viewCount() }} {{ str_plural('view',$video->viewCount()) }}
+
+                        </div>
                     </div>
 
                     <div class="media">

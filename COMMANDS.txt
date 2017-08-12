@@ -57,3 +57,10 @@ php artisan make:job UploadVideo
 
 Processed percentage ...
 php artisan make:controller EncodingWebhookController
+
+
+Logging the view count ...
+php artisan make:model VideoView -m
+php artisan migrate
+
+php artisan make:controller VideoViewController

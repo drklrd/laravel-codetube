@@ -16,7 +16,8 @@
     export default {
         data (){
                 return {
-                    player : null
+                    player : null,
+                    duration : 0
                 }
         },
         props : {
@@ -24,8 +25,31 @@
             videoUrl : null,
             thumbnailUrl : null
         },
+        methods : {
+            hasHitQuotaView(){
+                if(!this.duration){
+                    return false;
+                }
+                console.log(this.player.currentTime())
+                return Math.round(this.player.currentTime()=== Math.round( (10*this.duration) /100 ) );
+            },
+            createView(){
+                this.$http.post('/videos/'+this.videoUid+'/views');
+            }
+        },
         ready(){
             this.player = videojs('video');
+
+            this.player.on('loadedmetadata',()=>{
+                this.duration = Math.round(this.player.duration());
+            });
+
+            setInterval(()=>{
+                console.log(88)
+                if(this.hasHitQuotaView()){
+                    this.createView();
+                }
+            },1000);
         }
     }
 </script>
