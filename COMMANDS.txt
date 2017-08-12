@@ -90,3 +90,6 @@ composer require spatie/laravel-fractal
 
 Comments endpoint...
 php  artisan make:controller VideoCommentController
+
+Post comment...
+php artisan make:request CreateVideoCommentRequest

@@ -2,10 +2,18 @@
 
     <ul class="media-list">
         <p> {{comments.length}} comment(s) </p>
+
+        <div class="video-comments clearfix" if="$root.user.authenticated">
+            <textarea placeholder="Comment" class="form-control video-comment__input" v-model="body"></textarea>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default" @click="createComment">Post</button>
+            </div>
+        </div>
+
         <li class="media" v-for="comment in comments">
             <div class="media-left">
                 <a >
-                    <img v-bind:src="comment.channel.data.image" alt="Channel image" class="media-object">
+                    <img width="20" v-bind:src="comment.channel.data.image" alt="Channel image" class="media-object">
                 </a>
             </div>
             <div class="media-body">
@@ -42,6 +50,15 @@
                     .then((response)=>{
                         this.comments = response.body.data;
                     })
+            },
+            createComment(){
+                this.$http.post('/videos/'+this.videoUid+'/comments',{
+                    body : this.body
+                })
+                    .then((response)=>{
+                        this.comments.unshift(response.body.data);
+                        this.body=null;
+                    });
             }
         },
         props : {
@@ -49,7 +66,8 @@
         },
         data (){
             return {
-                comments : []
+                comments : [],
+                body : null
             }
         },
         mounted(){
