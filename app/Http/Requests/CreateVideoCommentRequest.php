@@ -25,7 +25,7 @@ class CreateVideoCommentRequest extends FormRequest
     {
         return [
             'body' => 'required|max:1000',
-            'reply_id' => 'exits:comments,id'
+            'reply_id' => 'exists:comments,id'
         ];
     }
 }

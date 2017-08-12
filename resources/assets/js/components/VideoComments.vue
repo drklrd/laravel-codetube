@@ -39,7 +39,7 @@
                 <div class="media" v-for="reply in comment.replies.data">
                     <div class="media-left">
                         <a >
-                            <img v-bind:src="reply.channel.data.image" alt="Channel image" class="media-object">
+                            <img width="20" v-bind:src="reply.channel.data.image" alt="Channel image" class="media-object">
                         </a>
                     </div>
 
@@ -66,7 +66,22 @@
                     })
             },
             createReply(commentId){
+                this.$http.post('/videos/'+this.videoUid+'/comments',{
+                    body : this.replyBody,
+                    reply_id : commentId
+                })
+                    .then((response)=>{
 
+                        this.comments.map((comment,index)=>{
+                            if(comment.id === commentId){
+                                this.comments[index].replies.data.push(response.body.data);
+                            }
+                        })
+
+                        this.replyBody=null;
+                        this.replyFormVisible=null;
+
+                    });
             },
             createComment(){
                 this.$http.post('/videos/'+this.videoUid+'/comments',{
