@@ -35,4 +35,14 @@ class VideoCommentController extends Controller
                ->toArray()
          );
     }
+
+    public function delete(Video $video, Comment $comment)
+    {
+        $this->authorize('delete',$comment); // can use this becaseu we have created CommentPolicy and added that in AuthServiceProvider.
+
+        $comment->delete();
+
+        return response()->json(null,200);
+
+    }
 }

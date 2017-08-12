@@ -26,6 +26,9 @@
                     <li v-if="$root.user.authenticated">
                         <a href="#" @click.prevent="toggleReplyForm(comment.id)" > {{ replyFormVisible === comment.id ? 'Cancel' : 'Reply' }} </a>
                     </li>
+                    <li>
+                        <a href="#" v-if="$root.user.id === comment.user_id" @click.prevent="deleteComment(comment.id)">Delete</a>
+                    </li>
                 </ul>
 
                 <div class="video-comment clear" v-if="replyFormVisible === comment.id">
@@ -48,6 +51,13 @@
                         <p>
                             {{reply.body}}
                         </p>
+
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" v-if="$root.user.id === reply.user_id" @click.prevent="deleteComment(reply.id)">Delete</a>
+                            </li>
+                        </ul>
+
                     </div>
 
                 </div>
@@ -100,6 +110,33 @@
                 }
 
                 this.replyFormVisible = commentId;
+            },
+            deleteComment(commentId){
+                if(!confirm('Are you sure to delete this ?')){
+                    return ;
+                }
+
+                this.deleteById(commentId);
+
+                this.$http.delete('/videos/'+this.videoUid+'/comments/'+commentId)
+                    .then(()=>{
+
+                    })
+            },
+            deleteById(commentId){
+                this.comments.map((comment,index)=>{
+                    if(comment.id === commentId){
+                        this.comments.splice(index,1);
+                        return;
+                    }
+
+                    comment.replies.data.map((reply,replyIndex)=>{
+                        if(reply.id === commentId){
+                            this.comments[index].replies.data.splice(replyIndex,1);
+                            return;
+                        }
+                    })
+                })
             }
         },
         props : {

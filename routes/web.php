@@ -58,6 +58,9 @@ Route::group(['middleware' => ['auth']],function(){
 
     Route::post('/videos/{video}/comments','VideoCommentController@create');
 
+    Route::delete('/videos/{video}/comments/{comment}','VideoCommentController@delete');
+
+
 
 
 });

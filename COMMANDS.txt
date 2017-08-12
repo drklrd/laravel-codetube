@@ -93,3 +93,6 @@ php  artisan make:controller VideoCommentController
 
 Post comment...
 php artisan make:request CreateVideoCommentRequest
+
+Delete Comment...
+php artisan make:policy CommentPolicy
