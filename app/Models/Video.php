@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Traits\Orderable; // New trait Orderable has been created taking a function from here !!!
-
+use Laravel\Scout\Searchable; // useing Searchable trait
 
 class Video extends Model
 {
-    use SoftDeletes ,Orderable; // since this is a Trait, we need to use it. // And then we use Orderable trait  HERE !!!
+    use SoftDeletes ,Orderable,Searchable; // since this is a Trait, we need to use it. // And then we use Orderable trait  HERE !!!
 
     protected $fillable = [
     	'title',

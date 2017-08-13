@@ -96,3 +96,17 @@ php artisan make:request CreateVideoCommentRequest
 
 Delete Comment...
 php artisan make:policy CommentPolicy
+
+
+Search setup....
+
+composer require laravel/scout
+composer require algolia/algoliasearch-client-php
+
+php artisan vendor:publish (publish the configuration of laravel scout)
+
+To index the search then
+php artisan queue:work
+
+php artisan scout:import "App\Models\Channel"
+php artisan scout:import "App\Models\Video"
