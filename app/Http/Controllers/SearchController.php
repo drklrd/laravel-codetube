@@ -17,9 +17,11 @@ class SearchController extends Controller
         }
 
         $channels = Channel::search($request->q)->take(2)->get();
+        $videos = Video::search($request->q)->get();
 
         return view('search.index',[
-            'channels' => $channels
+            'channels' => $channels,
+            'videos' => $videos
         ]);
     }
 }

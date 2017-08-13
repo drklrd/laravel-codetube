@@ -26,6 +26,20 @@
                             @endforeach
                         </div>
                     @endif
+
+                    @if($videos->count())
+                        @foreach($videos as $video)
+                            <div class="well">
+                                @include('video.partials._video_result',[
+                                    'video' => $video
+                                ])
+
+                            </div>
+                        @endforeach
+                    @else
+                        <p>No videos found</p>
+                    @endif
+
                 </div>
             </div>
         </div>
