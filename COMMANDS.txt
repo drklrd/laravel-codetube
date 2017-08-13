@@ -110,3 +110,6 @@ php artisan queue:work
 
 php artisan scout:import "App\Models\Channel"
 php artisan scout:import "App\Models\Video"
+
+Search for channels...
+php artisan make:controller SearchController
